@@ -1,0 +1,19 @@
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  passop-be:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/
+
+    ports:
+      - 3000:3000
+      
+    depends_on:
+      - mongodb
